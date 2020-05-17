@@ -11,7 +11,15 @@
             >Usando VueJS - {{ person.name }} ({{ person.age }})</p>
 
             <!-- 2) Exiba sua idade multiplicada por 3 -->
-            <p></p>
+                        <p class="
+                        col-lg-offset-1 col-lg-11
+                        col-md-offset-1 col-md-11
+                        col-sm-offset-1 col-sm-11
+                        col-xs-offset-1 col-xs-11
+                     "
+            >
+             {{ person.age * 3 }}
+            </p>
 
             <!-- 3) Chame uma função para exibir um número randomico
                 entre 0 and 1 (Math.random()) -->
