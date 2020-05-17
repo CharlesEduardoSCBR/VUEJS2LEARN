@@ -46,8 +46,14 @@
             </div>
             
             <!-- 5) Inicialize o input com o seu nome (use o atributo "value") -->
-            <div>
-                <input type="text">
+            <div class="
+                        col-lg-offset-1 col-lg-11
+                        col-md-offset-1 col-md-11
+                        col-sm-offset-1 col-sm-11
+                        col-xs-offset-1 col-xs-11
+                       "
+            >
+                <input type="text" :value='person.name'>
             </div>
         </div>
     </div>
@@ -76,5 +82,7 @@ export default {
 </script>
 
 <style>
-
+    div {
+        margin-bottom : 1.5%;
+    }
 </style>
