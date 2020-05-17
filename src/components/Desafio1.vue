@@ -11,7 +11,7 @@
             >Usando VueJS - {{ person.name }} ({{ person.age }})</p>
 
             <!-- 2) Exiba sua idade multiplicada por 3 -->
-                        <p class="
+            <p class="
                         col-lg-offset-1 col-lg-11
                         col-md-offset-1 col-md-11
                         col-sm-offset-1 col-sm-11
@@ -23,7 +23,15 @@
 
             <!-- 3) Chame uma função para exibir um número randomico
                 entre 0 and 1 (Math.random()) -->
-            <p></p>
+            <p class="
+                        col-lg-offset-1 col-lg-11
+                        col-md-offset-1 col-md-11
+                        col-sm-offset-1 col-sm-11
+                        col-xs-offset-1 col-xs-11
+                     "
+            >
+            {{ random() }}
+            </p>
 
             <!-- 4) Procure uma imagem no google e exiba na tag img 
                 fazendo o binding no atributo "src" -->
@@ -48,6 +56,12 @@ export default {
                 name : 'José Silva',
                 age : 20,
             },
+        }
+    },
+
+    methods:{
+        random() {
+            return Math.random();
         }
     }
 
