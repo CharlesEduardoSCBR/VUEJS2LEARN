@@ -9,7 +9,9 @@
         <!-- 2) Escute o evento "keydown" e armazene o valor na propriedade
             data (dica: event.target.value) -->
         <div>
-            <input type="text">
+            <input type="text"
+                v-on:keydown="listenKeys($event)"
+            >
             <p>{{ valor }}</p>
         </div>
 
@@ -36,6 +38,10 @@ export default {
      methods: {
          showAlert(){
              alert('The alert was triggered');
+         },
+
+         listenKeys(event){
+             this.valor = event.target.value;
          },
      }
 }
