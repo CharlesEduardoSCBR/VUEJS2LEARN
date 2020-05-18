@@ -39,7 +39,7 @@
                         col-sm-offset-1 col-sm-11
                         col-xs-offset-1 col-xs-11
                     "
-            >{{ resultado() }}</p>
+            >{{ resultado }}</p>
         </div>
     </div>  
 </template>
@@ -53,7 +53,7 @@ export default {
         }
     },
 
-    methods: {
+    computed: {
         resultado(){
             return this.valor != 37 ? 
                 'Valor Diferente' : 'Valor Igual';
