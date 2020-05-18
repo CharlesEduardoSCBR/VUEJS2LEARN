@@ -3,7 +3,7 @@
       <div class="row-fluid">
         <!-- 1) Exiba um alert quando o botão for clicado -->
         <div>
-            <button>Exibir Alerta</button>
+            <button v-on:click="showAlert()" >Exibir Alerta</button>
         </div>
 
         <!-- 2) Escute o evento "keydown" e armazene o valor na propriedade
@@ -26,8 +26,17 @@
 <script>
 export default {
      name: 'desafio2',
+
      data() {
-         return {}
+         return {
+             valor : 0,
+         }
+     },
+
+     methods: {
+         showAlert(){
+             alert('The alert was triggered');
+         },
      }
 }
 </script>
