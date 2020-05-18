@@ -18,7 +18,9 @@
         <!-- 3) Ajuste o exemplo 2 para disparar o evento "keydown" somente
             quando a tecla for ENTER -->
         <div>
-            <input type="text">
+            <input type="text"
+                 v-on:keydown.enter="listenKeys($event)"
+            >
             <p>{{ valor }}</p>
         </div>
       </div>
@@ -31,7 +33,7 @@ export default {
 
      data() {
          return {
-             valor : 0,
+             valor : '',
          }
      },
 
