@@ -1,16 +1,16 @@
 <template>
   <div id="app" class='container-fluid'>
-    <Desafio2/>
+    <Desafio3/>
   </div>
 </template>
 
 <script>
-import Desafio2 from './components/Desafio2.vue';
+import Desafio3 from './components/Desafio3.vue';
 
 export default {
   name: 'App',
   components: {
-    Desafio2
+    Desafio3
   }
 }
 </script>
