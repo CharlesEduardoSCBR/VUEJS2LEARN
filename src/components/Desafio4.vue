@@ -13,7 +13,7 @@
         <!-- 2) Crie duas classes CSS e associe a div usando a
             sintaxe de array -->
         <h2>#02</h2>
-        <div>Estou sem classe CSS :(</div>
+        <div :class="divSemClasse">Estou sem classe CSS :(</div>
 
         <!-- 3) Aplique na div abaixo a classe informada pelo usuário
             (crie classe CSS de exemplo). -->
@@ -57,6 +57,9 @@ export default {
     data() {
         return {
                 classeIniciarEfeito : 'destaque',
+                divSemClasse : [
+                    'fontEstiloPadrao', 'divAlgumaCoisa'
+                ],
             }
     },
 
@@ -87,5 +90,16 @@ export default {
 .encolher {
 	background-color: gray;
 	width: 50px !important;
+}
+
+.fontEstiloPadrao {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size : 18px;
+    color: red;
+}
+
+.divAlgumaCoisa {
+    background-color: yellow;
+    border: 1px solid black;
 }
 </style>
