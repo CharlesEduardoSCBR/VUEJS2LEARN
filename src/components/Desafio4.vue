@@ -19,8 +19,8 @@
             (crie classe CSS de exemplo). -->
         <h2>#03</h2>
         <div>
-            <input type="text">
-            <div></div>
+            <input type="text" v-model="divUser">
+            <div :class="divUser"></div>
         </div>
 
         <!-- 4) Aplique na div abaixo a classe informada pelo usuário e
@@ -60,6 +60,7 @@ export default {
                 divSemClasse : [
                     'fontEstiloPadrao', 'divAlgumaCoisa'
                 ],
+                divUser : '',
             }
     },
 
@@ -101,5 +102,11 @@ export default {
 .divAlgumaCoisa {
     background-color: yellow;
     border: 1px solid black;
+    width: 150px;
+    height: 50px;
+}
+
+.direita {
+    float: right;
 }
 </style>
