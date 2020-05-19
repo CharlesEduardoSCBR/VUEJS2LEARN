@@ -7,7 +7,7 @@
         <h2>#01</h2>
         <div>
             <button @click="iniciarEfeito">Iniciar Efeito</button>
-            <div id="efeito"></div>
+            <div id="efeito" :class="classeIniciarEfeito"></div>
         </div>
         
         <!-- 2) Crie duas classes CSS e associe a div usando a
@@ -44,7 +44,7 @@
         e binding de estilo. -->
         <h2>#06</h2>
         <div>
-            <button @click="iniciarProgresso">Iniciar</button>
+            <button>Iniciar</button>
             <div></div>
         </div>
     </div>
@@ -52,10 +52,40 @@
 
 <script>
 export default {
+    name : 'desafio4',
+    
+    data() {
+        return {
+                classeIniciarEfeito : 'destaque',
+            }
+    },
+
+    methods: {
+        iniciarEfeito() {
+            setInterval(() => {
+                this.classeIniciarEfeito = (this.classeIniciarEfeito == 'destaque' ? 'encolher' : 'destaque');
+            }, 1000);
+        },
+    }
+
 
 }
 </script>
 
 <style>
+#efeito {
+	width: 100px;
+	height: 100px;
+	border: 1px solid black;
+}
 
+.destaque {
+	background-color: red;
+	width: 200px !important;
+}
+
+.encolher {
+	background-color: gray;
+	width: 50px !important;
+}
 </style>
