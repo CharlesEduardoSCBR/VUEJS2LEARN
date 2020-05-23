@@ -27,9 +27,9 @@
         outra classe usando o valor true/false (crie classes CSS de exemplo). -->
         <h2>#04</h2>
         <div>
-            <input type="text">
-            <input type="text">
-            <div></div>
+            <input type="text" v-model='divUserNew'>
+            <input type="text" @input="setdivAlgumaCoisa">
+            <div :class="[divUserNew, {divAlgumaCoisa}]"></div>
         </div>
 
         <!-- 5) Repita 3) mas utilizando estilos ao invés de classes CSS.
@@ -60,7 +60,9 @@ export default {
                 divSemClasse : [
                     'fontEstiloPadrao', 'divAlgumaCoisa'
                 ],
+                divAlgumaCoisa : true,
                 divUser : '',
+                divUserNew : '',
             }
     },
 
@@ -70,6 +72,17 @@ export default {
                 this.classeIniciarEfeito = (this.classeIniciarEfeito == 'destaque' ? 'encolher' : 'destaque');
             }, 1000);
         },
+
+        setdivAlgumaCoisa(event) {
+            
+            if(event.target.value == "true"){
+                this.divAlgumaCoisa = true;
+            }
+            
+            if(event.target.value == "false"){
+                this.divAlgumaCoisa = false;
+            }
+        }
     }
 
 
