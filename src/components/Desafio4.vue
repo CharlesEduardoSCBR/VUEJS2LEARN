@@ -44,8 +44,10 @@
         e binding de estilo. -->
         <h2>#06</h2>
         <div>
-            <button>Iniciar</button>
-            <div></div>
+            <button @click="startProgress">Iniciar</button>
+            <div class="progressBar">
+                <div class="progressBox" :style="{width:widthProgress}"></div>
+            </div>
         </div>
     </div>
 </template>
@@ -69,7 +71,9 @@ export default {
                 estilo: {
                     width : '50px',
                     height: '50px',
-                }
+                },
+
+                widthProgress : '0',
             }
     },
 
@@ -89,7 +93,17 @@ export default {
             if(event.target.value == "false"){
                 this.divAlgumaCoisa = false;
             }
-        }
+        },
+
+        startProgress(){
+            let valor = 0;
+            const temporizador = setInterval(()=>{
+                valor += 5;
+                this.widthProgress = `${valor}%`;
+
+                if(valor == 100) clearInterval(temporizador)
+            }, 500);
+        },
     }
 
 
@@ -128,5 +142,17 @@ export default {
 
 .direita {
     float: right;
+}
+
+.progressBar {
+	width: 250px;
+	height: 30px;
+	border: 1px solid black;
+}
+
+.progressBox {
+    height: 100%;
+    background-color: red;
+
 }
 </style>
