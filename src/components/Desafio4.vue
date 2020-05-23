@@ -36,8 +36,8 @@
         Associe os estilos a div abaixo  -->
         <h2>#05</h2>
         <div>
-            <input type="text">
-            <div></div>
+            <input type="text" v-model="cor">
+            <div :style="[estilo, {backgroundColor: cor}]"></div>
         </div>
 
         <!-- 6) Crie uma barra de progresso simples com setInterval 
@@ -63,6 +63,13 @@ export default {
                 divAlgumaCoisa : true,
                 divUser : '',
                 divUserNew : '',
+
+                cor : '',
+
+                estilo: {
+                    width : '50px',
+                    height: '50px',
+                }
             }
     },
 
