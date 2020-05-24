@@ -47,7 +47,11 @@
                     class="btn btn-primary">Iniciar o jogo</button>
             </template>
         </div>
-        <div class="panel panel-default logs"></div>
+        <div class="panel panel-default logs" v-if="logs.length > 0">
+            <ul>
+                <li v-for="(log, index) in logs" class="log" :class="log.cls" :key="index">{{ log.text }}</li>
+            </ul>
+        </div>
     </div>
 </template>
 
@@ -58,6 +62,7 @@ export default {
             startGame: false,
             playerLife: 100,
             monsterLife: 100,
+            logs : []
         }
     },
 
@@ -66,36 +71,44 @@ export default {
             this.startGame = true;
             this.playerLife = 100;
             this.monsterLife = 100;
+            this.logs = [];
         },
 
         attack(especial = false){
-            this.hurt('playerLife', 5,10,especial);
-            this.hurt('monsterLife', 7,12,false);
+            this.hurt('playerLife', 5,10,especial, 'Jogador', 'Monstro', 'player');
+
+            if (this.monsterLife > 0) {
+                this.hurt('monsterLife', 7,12,false, 'Monstro', 'Jogador', 'monster');
+            }
         },
 
-        hurt(atacante, min, max, especial){
+        hurt(atacante, min, max, especial, source, target, cls){
             let plus = especial ? 5 : 0;
             let hurt = (this.getRandom(min+plus, max+plus));
 
             this[atacante] = Math.max(this[atacante] - hurt, 0);
-
-            return hurt;
+            this.registerLog(`${source} atingiu ${target} com ${hurt}.`, cls);
         },
 
         heal(min, max){
             let heal = this.getRandom(min, max);
             
             this.playerLife = Math.min(this.playerLife + heal, 100);
+            this.registerLog(`Jogador ganhou força de ${heal}.`, 'player');
         },
 
         healAndHurt(){
             this.heal(10, 15);
-            this.hurt('playerLife', 7, 12, false);
+            this.hurt('playerLife', 7, 12, false, 'Monstro', 'Jogador', 'monster');
         },
 
         getRandom(min, max){
             const value = Math.random() * (max - min) + min;
             return Math.round(value);
+        },
+
+        registerLog(text, cls) {
+            this.logs.unshift({ text, cls});
         }
     },
 
@@ -189,4 +202,32 @@ html {
 .result .lose {
     color: red;
 }
+
+div .logs ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+div .logs ul li {
+    display: flex;
+    justify-content: center;
+    margin: 4px 0px;
+    padding: 3px 0px;
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    border-radius: 3px;
+}
+
+div .logs .player {
+    background-color: #5cb85caa;
+}
+
+div .logs .monster {
+    background-color: #d9534faa;
+}
+
 </style>
