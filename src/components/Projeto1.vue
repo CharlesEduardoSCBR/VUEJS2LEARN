@@ -37,7 +37,7 @@
             <template v-if="startGame">
                 <button @click="attack(false)" class="btn btn-danger"  >ATAQUE</button>
                 <button @click="attack(true)" class="btn btn-warning" >ATAQUE ESPECIAL</button>
-                <button class="btn btn-success" >CURAR</button>
+                <button @click="healAndHurt" class="btn btn-success" >CURAR</button>
                 <button 
                     @click="startGame=false"
                     class="btn btn-default" >DESISTIR</button>
@@ -69,19 +69,28 @@ export default {
         },
 
         attack(especial = false){
-            let damageMonster = this.hurt(5,10,especial);
-            let damagePlayer = this.hurt(5,10,especial);
-
-            this.monsterLife = Math.max(this.monsterLife - damageMonster, 0);
-            this.playerLife = Math.max(this.playerLife - damagePlayer, 0);
-
+            this.hurt('playerLife', 5,10,especial);
+            this.hurt('monsterLife', 7,12,false);
         },
 
-        hurt(min, max, especial){
+        hurt(atacante, min, max, especial){
             let plus = especial ? 5 : 0;
             let hurt = (this.getRandom(min+plus, max+plus));
 
+            this[atacante] = Math.max(this[atacante] - hurt, 0);
+
             return hurt;
+        },
+
+        heal(min, max){
+            let heal = this.getRandom(min, max);
+            
+            this.playerLife = Math.min(this.playerLife + heal, 100);
+        },
+
+        healAndHurt(){
+            this.heal(10, 15);
+            this.hurt('playerLife', 7, 12, false);
         },
 
         getRandom(min, max){
