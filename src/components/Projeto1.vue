@@ -34,10 +34,16 @@
             </div>
         </div>
         <div class="panel panel-default buttons">
-            <button class="btn btn-danger">ATAQUE</button>
-            <button class="btn btn-warning">ATAQUE ESPECIAL</button>
-            <button class="btn btn-success">CURAR</button>
-            <button class="btn btn-default">DESISTIR</button>
+            <template v-if="startGame">
+                <button class="btn btn-danger"  >ATAQUE</button>
+                <button class="btn btn-warning" >ATAQUE ESPECIAL</button>
+                <button class="btn btn-success" >CURAR</button>
+                <button class="btn btn-default" >DESISTIR</button>
+            </template>
+            <template v-else>
+                <button @click="run"
+                    class="btn btn-primary">Iniciar o jogo</button>
+            </template>
         </div>
         <div class="panel panel-default logs"></div>
     </div>
@@ -47,8 +53,15 @@
 export default {
     data() {
         return {
-            playerLife: 15,
+            startGame: false,
+            playerLife: 100,
             monsterLife: 100,
+        }
+    },
+
+    methods: {
+        run(){
+            this.startGame = true;
         }
     },
 
@@ -117,6 +130,7 @@ html {
 .buttons button {
     margin-left: 1%;
     margin-right: 1%;
+    text-transform: uppercase;
 }
 
 .result {
