@@ -20,7 +20,12 @@
         </div>
 
         <div class="panel panel-default result"></div>
-        <div class="panel panel-default buttons"></div>
+        <div class="panel panel-default buttons">
+            <button class="btn btn-danger">ATAQUE</button>
+            <button class="btn btn-warning">ATAQUE ESPECIAL</button>
+            <button class="btn btn-success">CURAR</button>
+            <button class="btn btn-default">DESISTIR</button>
+        </div>
         <div class="panel panel-default logs"></div>
     </div>
 </template>
@@ -76,4 +81,14 @@ html {
     height: 100%;
 }
 
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.buttons button {
+    margin-left: 1%;
+    margin-right: 1%;
+}
 </style>
