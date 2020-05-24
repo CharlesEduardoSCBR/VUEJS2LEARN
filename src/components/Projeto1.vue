@@ -64,6 +64,8 @@ export default {
     methods: {
         run(){
             this.startGame = true;
+            this.playerLife = 100;
+            this.monsterLife = 100;
         }
     },
 
