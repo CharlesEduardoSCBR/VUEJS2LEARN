@@ -25,7 +25,14 @@
             </div>
         </div>
 
-        <div class="panel panel-default result"></div>
+        <div class="panel panel-default result" v-if="hasResult">
+            <div v-if="monsterLife == 0" class="win">
+                <h2>Você ganhou!!! :)</h2>
+            </div>
+            <div v-else class="lose">
+                <h2>Você perdeu! :(</h2>
+            </div>
+        </div>
         <div class="panel panel-default buttons">
             <button class="btn btn-danger">ATAQUE</button>
             <button class="btn btn-warning">ATAQUE ESPECIAL</button>
@@ -42,7 +49,12 @@ export default {
         return {
             playerLife: 15,
             monsterLife: 100,
-            color : "green",
+        }
+    },
+
+    computed: {
+        hasResult() {
+            return this.playerLife == 0 || this.monsterLife == 0;
         }
     }
 }
@@ -105,5 +117,22 @@ html {
 .buttons button {
     margin-left: 1%;
     margin-right: 1%;
+}
+
+.result {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.result .win {
+    color: green;
+}
+
+.result .lose {
+    color: red;
 }
 </style>
