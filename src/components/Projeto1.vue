@@ -94,6 +94,12 @@ export default {
         hasResult() {
             return this.playerLife == 0 || this.monsterLife == 0;
         }
+    },
+
+    watch: {
+        hasResult(value){
+            if(value) this.startGame = false;
+        }
     }
 }
 </script>
