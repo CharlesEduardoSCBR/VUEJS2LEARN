@@ -4,7 +4,10 @@
             <div class="playersScores item">
                 <h1>Jogador</h1>
                 <div class="progressBar">
-                    <div class="progressBox" :style="[{backgroundColor:color}]"></div>
+                    <div class="progressBox" 
+                        :class="{dangerScore: playerLife < 20}"
+                        :style="{width: playerLife + '%'}"
+                    ></div>
                 </div>
                 <div>
                     <p>{{ playerLife }} %</p>
@@ -13,7 +16,10 @@
             <div class="playersScores">
                 <h1>Monstro</h1>
                 <div class="progressBar">
-                    <div class="progressBox" :style="[{backgroundColor:color}]"></div>
+                    <div class="progressBox" 
+                        :class="{dangerScore: monsterLife < 20}"
+                        :style="{width: monsterLife + '%'}"
+                    ></div>
                 </div>
                 <div><p>{{ monsterLife }} %</p></div>
             </div>
@@ -34,7 +40,7 @@
 export default {
     data() {
         return {
-            playerLife: 100,
+            playerLife: 15,
             monsterLife: 100,
             color : "green",
         }
@@ -70,15 +76,24 @@ html {
     flex : 1;
 }
 
-.progressBar {
+.scores .playersScores h1 {
+    font-weight: 600;
+}
+
+.scores .progressBar {
 	width: 85%;
 	height: 30px;
     margin: auto;
-	border: 1px solid black;
+	border: 1px solid #aaa;
 }
 
-.progressBox {
+.scores .progressBar .progressBox {
     height: 100%;
+    background-color: green;
+}
+
+.scores .progressBar .progressBox.dangerScore {
+    background-color: red;
 }
 
 .buttons {
