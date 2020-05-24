@@ -35,8 +35,8 @@
         </div>
         <div class="panel panel-default buttons">
             <template v-if="startGame">
-                <button class="btn btn-danger"  >ATAQUE</button>
-                <button class="btn btn-warning" >ATAQUE ESPECIAL</button>
+                <button @click="attack(false)" class="btn btn-danger"  >ATAQUE</button>
+                <button @click="attack(true)" class="btn btn-warning" >ATAQUE ESPECIAL</button>
                 <button class="btn btn-success" >CURAR</button>
                 <button 
                     @click="startGame=false"
@@ -66,6 +66,27 @@ export default {
             this.startGame = true;
             this.playerLife = 100;
             this.monsterLife = 100;
+        },
+
+        attack(especial = false){
+            let damageMonster = this.hurt(5,10,especial);
+            let damagePlayer = this.hurt(5,10,especial);
+
+            this.monsterLife = Math.max(this.monsterLife - damageMonster, 0);
+            this.playerLife = Math.max(this.playerLife - damagePlayer, 0);
+
+        },
+
+        hurt(min, max, especial){
+            let plus = especial ? 5 : 0;
+            let hurt = (this.getRandom(min+plus, max+plus));
+
+            return hurt;
+        },
+
+        getRandom(min, max){
+            const value = Math.random() * (max - min) + min;
+            return Math.round(value);
         }
     },
 
