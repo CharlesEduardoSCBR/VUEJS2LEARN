@@ -38,7 +38,9 @@
                 <button class="btn btn-danger"  >ATAQUE</button>
                 <button class="btn btn-warning" >ATAQUE ESPECIAL</button>
                 <button class="btn btn-success" >CURAR</button>
-                <button class="btn btn-default" >DESISTIR</button>
+                <button 
+                    @click="startGame=false"
+                    class="btn btn-default" >DESISTIR</button>
             </template>
             <template v-else>
                 <button @click="run"
